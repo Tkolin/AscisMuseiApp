@@ -28,11 +28,15 @@
                         <ComboBox x:Name="C1"/>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock Margin="10,50,10,0">Должность:</TextBlock>
+                <TextBlock Margin="10,30,10,0">Логин:</TextBlock>
+                <TextBox x:Name="T4" Width="250" HorizontalAlignment="Left"/>
+                <TextBlock  Margin="10,10,10,0">Пароль:</TextBlock>
+                <TextBox x:Name="T5" Width="250" HorizontalAlignment="Left"/>
+                <TextBlock Margin="10,20,10,0">Должность:</TextBlock>
                 <ComboBox Width="250" HorizontalAlignment="Left" x:Name="C2"/>
                 <TextBlock Margin="10,10,10,0">Статус:</TextBlock>
                 <ComboBox Width="250" HorizontalAlignment="Left"  x:Name="C3"/>
-                <Button Width="140" Margin="5,50,5,5" x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
+                <Button Width="140" Margin="5,8,5,5" x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
                 <Button Width="140" Margin="5" x:Name="btnExit" Click="btnExit_Click">Назад</Button>
             </StackPanel>
             <StackPanel Orientation="Vertical" Width="430" Margin="5" Background="AntiqueWhite">
