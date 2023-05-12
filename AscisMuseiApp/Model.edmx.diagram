@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b7aac4c015084543bff3c27a393049e0" Name="Diagram1">
-        <EntityTypeShape EntityType="AskisMuseiDBModel.HealStatus" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.Post" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.Quast" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.Role" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.StatusID" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="AskisMuseiDBModel.FK_Quast_StatusID" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="AskisMuseiDBModel.User" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.HealStatus" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.Post" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.Quast" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.Role" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.StatusID" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.25" />
+        <EntityTypeShape EntityType="AskisMuseiDBModel.User" Width="1.5" PointX="3" PointY="2.5" />
         <AssociationConnector Association="AskisMuseiDBModel.FK_User_HealStatus" />
         <AssociationConnector Association="AskisMuseiDBModel.FK_User_Post" />
+        <AssociationConnector Association="AskisMuseiDBModel.FK_Quast_StatusID" />
         <AssociationConnector Association="AskisMuseiDBModel.FK_Quast_User" />
         <AssociationConnector Association="AskisMuseiDBModel.FK_User_Role" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

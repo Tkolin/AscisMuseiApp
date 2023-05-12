@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" />
           <Property Name="UserID" Type="int" />
           <Property Name="Name" Type="varchar(max)" />
@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar(max)" />
           <Property Name="LastName" Type="varchar(max)" />
           <Property Name="Patronymic" Type="varchar(max)" />
@@ -162,6 +162,35 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AskisMuseiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AskisMuseiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HealStatus" EntityType="AskisMuseiDBModel.HealStatus" />
+          <EntitySet Name="Post" EntityType="AskisMuseiDBModel.Post" />
+          <EntitySet Name="Quast" EntityType="AskisMuseiDBModel.Quast" />
+          <EntitySet Name="Role" EntityType="AskisMuseiDBModel.Role" />
+          <EntitySet Name="StatusID" EntityType="AskisMuseiDBModel.StatusID" />
+          <EntitySet Name="sysdiagrams" EntityType="AskisMuseiDBModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="AskisMuseiDBModel.User" />
+          <AssociationSet Name="FK_User_HealStatus" Association="AskisMuseiDBModel.FK_User_HealStatus">
+            <End Role="HealStatus" EntitySet="HealStatus" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Post" Association="AskisMuseiDBModel.FK_User_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quast_StatusID" Association="AskisMuseiDBModel.FK_Quast_StatusID">
+            <End Role="StatusID" EntitySet="StatusID" />
+            <End Role="Quast" EntitySet="Quast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quast_User" Association="AskisMuseiDBModel.FK_Quast_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Quast" EntitySet="Quast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="AskisMuseiDBModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="HealStatus">
           <Key>
             <PropertyRef Name="ID" />
@@ -182,13 +211,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="StatusID" Type="Int32" />
-          <NavigationProperty Name="StatusID1" Relationship="Self.FK_Quast_StatusID" FromRole="Quast" ToRole="StatusID" />
+          <NavigationProperty Name="StatusID1" Relationship="AskisMuseiDBModel.FK_Quast_StatusID" FromRole="Quast" ToRole="StatusID" />
           <NavigationProperty Name="User" Relationship="AskisMuseiDBModel.FK_Quast_User" FromRole="Quast" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
@@ -205,64 +234,23 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Quast" Relationship="Self.FK_Quast_StatusID" FromRole="StatusID" ToRole="Quast" />
+          <NavigationProperty Name="Quast" Relationship="AskisMuseiDBModel.FK_Quast_StatusID" FromRole="StatusID" ToRole="Quast" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Quast_StatusID">
-          <End Role="StatusID" Type="Self.StatusID" Multiplicity="0..1" />
-          <End Role="Quast" Type="Self.Quast" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusID">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Quast">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="AskisMuseiDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="HealStatus" EntityType="Self.HealStatus" />
-          <EntitySet Name="Post" EntityType="Self.Post" />
-          <EntitySet Name="Quast" EntityType="Self.Quast" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="StatusID" EntityType="Self.StatusID" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_Quast_StatusID" Association="Self.FK_Quast_StatusID">
-            <End Role="StatusID" EntitySet="StatusID" />
-            <End Role="Quast" EntitySet="Quast" />
-          </AssociationSet>
-          <EntitySet Name="User" EntityType="AskisMuseiDBModel.User" />
-          <AssociationSet Name="FK_User_HealStatus" Association="AskisMuseiDBModel.FK_User_HealStatus">
-            <End Role="HealStatus" EntitySet="HealStatus" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Post" Association="AskisMuseiDBModel.FK_User_Post">
-            <End Role="Post" EntitySet="Post" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Quast_User" Association="AskisMuseiDBModel.FK_Quast_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Quast" EntitySet="Quast" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="AskisMuseiDBModel.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          </EntityContainer>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -301,6 +289,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Quast_StatusID">
+          <End Type="AskisMuseiDBModel.StatusID" Role="StatusID" Multiplicity="0..1" />
+          <End Type="AskisMuseiDBModel.Quast" Role="Quast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusID">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quast">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Quast_User">
           <End Type="AskisMuseiDBModel.User" Role="User" Multiplicity="0..1" />
           <End Type="AskisMuseiDBModel.Quast" Role="Quast" Multiplicity="*" />
@@ -325,7 +325,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -334,55 +334,55 @@
           <EntitySetMapping Name="HealStatus">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.HealStatus">
               <MappingFragment StoreEntitySet="HealStatus">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Post">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.Post">
               <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quast">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.Quast">
               <MappingFragment StoreEntitySet="Quast">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StatusID">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.StatusID">
               <MappingFragment StoreEntitySet="StatusID">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="AskisMuseiDBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

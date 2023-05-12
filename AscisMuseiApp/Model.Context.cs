@@ -19,6 +19,11 @@ namespace AscisMuseiApp
             : base("name=AskisMuseiDBEntities")
         {
         }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
         private static AskisMuseiDBEntities _content;
         public static AskisMuseiDBEntities GetContent()
         {
@@ -26,11 +31,7 @@ namespace AscisMuseiApp
                 _content = new AskisMuseiDBEntities();
             return _content;
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
+
         public virtual DbSet<HealStatus> HealStatus { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Quast> Quast { get; set; }
