@@ -24,5 +24,13 @@ namespace AscisMuseiApp
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string login = tBoxLogin.Text;
+            string password = tBoxPass.Text;
+
+
+        }
     }
 }

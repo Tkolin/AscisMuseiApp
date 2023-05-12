@@ -12,10 +12,10 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="192">
             <TextBlock   HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="0,0,0,20">Авторизация</TextBlock>
             <TextBlock  FontWeight="Bold" Margin="10,0,0,0">Логин:</TextBlock>
-            <TextBox></TextBox>
+            <TextBox x:Name="tBoxLogin"></TextBox>
             <TextBlock  FontWeight="Bold" Margin="10,0,0,0">Пароль:</TextBlock>
-            <TextBox></TextBox>
-            <Button Margin="10" Width="50">Вход</Button>
+            <TextBox x:Name="tBoxPass"></TextBox>
+            <Button Margin="10" Width="50" Click="Button_Click">Вход</Button>
         </StackPanel>
     </Grid>
 </Page>
