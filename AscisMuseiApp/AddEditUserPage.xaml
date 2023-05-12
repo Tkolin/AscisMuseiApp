@@ -12,10 +12,15 @@
         <StackPanel Orientation="Horizontal" Width="800">
             <StackPanel Orientation="Vertical" Width="350" Margin="5">
                 <StackPanel Orientation="Horizontal"  Background="AliceBlue">
-                    <Grid>
-                        <Image Width="150"  Height="150" Source="/1.png"/>
-                        <Image Width="150"  Height="150" x:Name="imageBox"/>
-                    </Grid>
+                    <StackPanel Orientation="Vertical">
+
+                        <Grid>
+                            <Image Width="120"  Height="120" Source="/1.png"/>
+                            <Image Width="120"  Height="120" x:Name="imageBox"/>
+                        </Grid>
+                        <Button Width="150" Margin="5" >Загрузить изображение</Button>
+                    </StackPanel>
+
 
                     <StackPanel Orientation="Vertical" Width="180" Margin="5">
                         <TextBlock>Имя:</TextBlock>
@@ -26,6 +31,7 @@
                         <TextBox x:Name="T3"/>
                         <TextBlock>Пол:</TextBlock>
                         <ComboBox x:Name="C1"/>
+
                     </StackPanel>
                 </StackPanel>
                 <TextBlock Margin="10,30,10,0">Логин:</TextBlock>
