@@ -21,6 +21,11 @@ namespace AscisMuseiApp
     public partial class MenyPage : Page
     {
         User user;
+        public MenyPage(User user)
+        {
+            InitializeComponent();
+            this.user = user;
+        }
         public MenyPage()
         {
             InitializeComponent();
@@ -28,7 +33,7 @@ namespace AscisMuseiApp
 
         private void N1_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new QuastPage());
+            NavigationService.Navigate(new QuastPage(user));
         }
 
         private void N2_Click(object sender, RoutedEventArgs e)
@@ -39,6 +44,11 @@ namespace AscisMuseiApp
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Роли
         }
     }
 }

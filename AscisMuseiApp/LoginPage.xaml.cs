@@ -30,6 +30,14 @@ namespace AscisMuseiApp
             string login = tBoxLogin.Text;
             string password = tBoxPass.Text;
 
+            if( AskisMuseiDBEntities.GetContent().User.Where(u=> u.Login == login && u.Password == password).Count() != 0)
+            {
+                User users = AskisMuseiDBEntities.GetContent().User.Where(u => u.Login == login && u.Password == password).First();
+                NavigationService.Navigate(new MenyPage(users));
+            }
+
+
+
 
         }
     }

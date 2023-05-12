@@ -6,19 +6,26 @@
       xmlns:local="clr-namespace:AscisMuseiApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UserPage">
+      Title="UserPage" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel Orientation="Horizontal" Width="800">
             <StackPanel Orientation="Vertical" Width="580" Margin="5">
                 <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="5">Сотрудники</TextBlock>
                 <TextBlock Margin="5,5,0,0">Поиск</TextBlock>
-                <TextBox Margin="0,0,0,5" Width="200" HorizontalAlignment="Left"></TextBox>
+                <TextBox Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" x:Name="tBox" TextChanged="TextBox_TextChanged"></TextBox>
 
                 <Button Width="150" HorizontalAlignment="Left" Margin="25,5,0,5">Сбросить</Button>
 
                 <DataGrid Height="300" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="False">
-                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Мироприятие (Код)" Binding="{Binding Event.ID}" Width="4*"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="3*"/>
+                        <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="3*"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="2*"/>
+                        <DataGridTextColumn Header="Ответственный" Binding="{Binding User.LastName}" Width="3*"/>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}" Width="2*"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
             <StackPanel Orientation="Vertical" Width="200" Margin="5">
